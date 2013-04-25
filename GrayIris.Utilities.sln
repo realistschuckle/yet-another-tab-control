@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrayIris.Utilities", "GrayIris.Utilities.csproj", "{38D57FE6-C75F-4B05-9E4F-D02A48CAA21E}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{38D57FE6-C75F-4B05-9E4F-D02A48CAA21E}.Debug.ActiveCfg = Debug|.NET
+		{38D57FE6-C75F-4B05-9E4F-D02A48CAA21E}.Debug.Build.0 = Debug|.NET
+		{38D57FE6-C75F-4B05-9E4F-D02A48CAA21E}.Release.ActiveCfg = Release|.NET
+		{38D57FE6-C75F-4B05-9E4F-D02A48CAA21E}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
