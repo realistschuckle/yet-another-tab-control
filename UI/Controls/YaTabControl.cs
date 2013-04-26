@@ -342,7 +342,10 @@ namespace GrayIris.Utilities.UI.Controls
 				yaSelectedIndex = value;
 				if( Controls.Count > 0 )
 				{
-					yaSelectedTab.Visible = false;
+                    foreach (Control ctrl in this.Controls)
+                    {
+                        ctrl.Visible = false;
+                    }
 					yaSelectedTab = ( YaTabPage ) Controls[ value ];
 					yaSelectedTab.Visible = true;
 					PerformLayout();

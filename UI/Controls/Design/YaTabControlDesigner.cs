@@ -187,13 +187,21 @@ namespace GrayIris.Utilities.UI.Controls.Design
 			if( dh != null )
 			{
 				int i = ytc.SelectedIndex;
-				string name = GetNewTabName();
-				YaTabPage ytp = dh.CreateComponent( typeof( YaTabPage ), name ) as YaTabPage;
-				ytp.Text = name;
-				ytc.Controls.Add( ytp );
-				ytc.SelectedTab = ytp;
-				RaiseComponentChanging( TypeDescriptor.GetProperties( Control )[ "SelectedIndex" ] );
-				RaiseComponentChanged( TypeDescriptor.GetProperties( Control )[ "SelectedIndex" ], i, ytc.SelectedIndex );
+                while( true )
+                {
+                    try
+                    {
+                        string name = GetNewTabName();
+                        YaTabPage ytp = dh.CreateComponent(typeof(YaTabPage), name) as YaTabPage;
+                        ytp.Text = name;
+                        ytc.Controls.Add(ytp);
+                        ytc.SelectedTab = ytp;
+                        RaiseComponentChanging(TypeDescriptor.GetProperties(Control)["SelectedIndex"]);
+                        RaiseComponentChanged(TypeDescriptor.GetProperties(Control)["SelectedIndex"], i, ytc.SelectedIndex);
+                        break;
+                    }
+                    catch( Exception ) {}
+                }
 			}
 		}
 
@@ -229,17 +237,8 @@ namespace GrayIris.Utilities.UI.Controls.Design
 		/// <returns></returns>
 		private string GetNewTabName()
 		{
-			int i = 1;
-			Hashtable h = new Hashtable( ytc.Controls.Count );
-			foreach( Control c in ytc.Controls )
-			{
-				h[ c.Name ] = null;
-			}
-			while( h.ContainsKey( "tabPage" + i ) )
-			{
-				i++;
-			}
-			return "tabPage" + i;
+            _controlNameNumber += 1;
+            return "tabPage" + _controlNameNumber;
 		}
 
 		/// <summary>
@@ -252,5 +251,11 @@ namespace GrayIris.Utilities.UI.Controls.Design
 		/// this designer handles.
 		/// </summary>
 		private YaTabControl ytc;
+
+        /// <summary>
+        /// Contains the most recent incremented value for generating new
+        /// tab names.
+        /// </summary>
+        private static int _controlNameNumber;
 	}
 }

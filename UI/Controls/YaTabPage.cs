@@ -7,6 +7,7 @@ namespace GrayIris.Utilities.UI.Controls
 	/// <summary>
 	/// Summary description for YaTabPage.
 	/// </summary>
+    [ToolboxItem(false)]
 	[Designer( typeof( GrayIris.Utilities.UI.Controls.Design.YaTabPageDesigner ) )]
 	public class YaTabPage : ContainerControl
 	{
