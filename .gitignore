@@ -108,3 +108,4 @@ Backup*/
 UpgradeLog*.XML
 
 .DS_Store
+doc/
