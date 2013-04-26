@@ -55,6 +55,7 @@ namespace GrayIris.Utilities.UI.Controls
 			CalculateTabLengths();
 			CalculateLastVisibleTabIndex();
 			ChildTextChangeEventHandler = new EventHandler( YaTabPage_TextChanged );
+            OverIndex = -1;
 		}
 
 		#endregion
@@ -304,6 +305,8 @@ namespace GrayIris.Utilities.UI.Controls
 				InU();
 			}
 		}
+
+        public virtual int OverIndex { get; set; }
 
 		/// <summary>
 		/// Gets and sets the zero-based index of the selected
@@ -812,6 +815,68 @@ namespace GrayIris.Utilities.UI.Controls
 
 		#region Protected Overridden Methods
 
+        /// <summary>
+        /// Overridden. Inherited from <see cref="Control"/>.
+        /// </summary>
+        /// <param name="mea">
+        /// See <see cref="Control.OnMouseLeave(MouseEventArgs)"/>.
+        /// </param>
+        protected override void OnMouseLeave(EventArgs mea)
+        {
+            OverIndex = -1;
+            Invalidate();
+        }
+
+        /// <summary>
+        /// Overridden. Inherited from <see cref="Control"/>.
+        /// </summary>
+        /// <param name="mea">
+        /// See <see cref="Control.OnMouseMove(MouseEventArgs)"/>.
+        /// </param>
+        protected override void OnMouseMove(MouseEventArgs mea)
+        {
+            base.OnMouseMove( mea );
+            int t = -Convert.ToInt32(yaTabLeftDif);
+			Point p = new Point( mea.X - 2 * yaMargin, mea.Y );
+			switch( yaTabDock )
+			{
+				case DockStyle.Bottom:
+					p.Y -= yaClientRectangle.Height;
+					break;
+				case DockStyle.Left:
+					p.Y = mea.X;
+					p.X = Height - mea.Y;
+					break;
+				case DockStyle.Right:
+					p.Y = Width - mea.X;
+					p.X = mea.Y;
+					break;
+			}
+            if (p.Y > yaMargin && p.Y < Convert.ToInt32(yaTabSpan + 3.0f * yaMargin))
+            {
+                int runningTotal = t;
+                for (int i = 0; i <= yaLastVisibleTabIndex; i++)
+                {
+                    if (p.X >= runningTotal && p.X < runningTotal + Convert.ToInt32(yaTabLengths[i]))
+                    {
+                        bool changed = OverIndex != i;
+                        if (changed)
+                        {
+                            OverIndex = i;
+                            Invalidate();
+                        }
+                        break;
+                    }
+                    runningTotal += Convert.ToInt32(yaTabLengths[i]);
+                }
+            }
+            else
+            {
+                OverIndex = -1;
+                Invalidate();
+            }
+        }
+
 		/// <summary>
 		/// Overridden. Inherited from <see cref="Control"/>.
 		/// </summary>
@@ -1042,7 +1107,7 @@ namespace GrayIris.Utilities.UI.Controls
 						s.Width = Convert.ToSingle( yaTabLengths[ i ] );
 						if( i != yaSelectedIndex )
 						{
-							yaTabDrawer.DrawTab( yaActiveColor, yaInactiveColor, yaHighlightPen.Color, yaShadowPen.Color, yaBorderPen.Color, false, yaTabDock, pea.Graphics, s );
+							yaTabDrawer.DrawTab( yaActiveColor, yaInactiveColor, yaHighlightPen.Color, yaShadowPen.Color, yaBorderPen.Color, false, i == OverIndex, yaTabDock, pea.Graphics, s );
 						}
 						else
 						{
@@ -1066,7 +1131,7 @@ namespace GrayIris.Utilities.UI.Controls
 					{
 						pea.Graphics.Transform = selTransform;
 						s.Width = Convert.ToSingle( yaTabLengths[ yaSelectedIndex ] );
-						yaTabDrawer.DrawTab( yaActiveColor, yaInactiveColor, yaHighlightPen.Color, yaShadowPen.Color, yaBorderPen.Color, true, yaTabDock, pea.Graphics, s );
+						yaTabDrawer.DrawTab( yaActiveColor, yaInactiveColor, yaHighlightPen.Color, yaShadowPen.Color, yaBorderPen.Color, true, SelectedIndex == OverIndex, yaTabDock, pea.Graphics, s );
 					}
 				}
 

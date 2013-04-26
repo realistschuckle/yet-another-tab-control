@@ -20,6 +20,7 @@ namespace GrayIris.Utilities.UI.Controls
 		/// <param name="shadowColor">The shadow <see cref="Color"/> of the tab.</param>
 		/// <param name="borderColor">The <see cref="Color"/> used as the border color for the <see cref="YaTabControl"/>.</param>
 		/// <param name="active">Flag to instruct the drawer to draw the active tab.</param>
+        /// <param name="mouseOver">Flag to indicate the cursor is over the tab getting drawn.</param>
 		/// <param name="dock">The <see cref="DockStyle"/> to inform the tab drawer how to draw highlights and shadows, if applicable.</param>
 		/// <param name="graphics">The <see cref="Graphics"/> on which to draw the tab.</param>
 		/// <param name="tabSize">The <see cref="Size"/> of the tab.</param>
@@ -28,14 +29,15 @@ namespace GrayIris.Utilities.UI.Controls
 		/// relative coordinate (0,0) is where the tab should get drawn.
 		/// </remarks>
 		public abstract void DrawTab( Color foreColor,
-										Color backColor,
-										Color highlightColor,
-										Color shadowColor,
-										Color borderColor,
-										bool active,
-										DockStyle dock,
-										Graphics graphics,
-										SizeF tabSize );
+                                      Color backColor,
+                                      Color highlightColor,
+                                      Color shadowColor,
+                                      Color borderColor,
+                                      bool active,
+                                      bool mouseOver,
+                                      DockStyle dock,
+                                      Graphics graphics,
+                                      SizeF tabSize);
 
 		/// <summary>
 		/// Instructs the <see cref="YaTabControl"/> to draw the higlight/shadow lines.
