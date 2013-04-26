@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription( "A library of commonly-needed utility classes." )]
 [assembly: AssemblyConfiguration( "Release" )]
 [assembly: AssemblyCompany( "Gray Iris Software LC" )]
-[assembly: AssemblyCopyright( "2005 by Gray Iris Software LC" )]
+[assembly: AssemblyCopyright( "2005-2013 by Gray Iris Software LC" )]
 
 [assembly: CLSCompliant( true )]
 [assembly: ComVisible( false )]
 
-[assembly: AssemblyVersion( "0.2.*" )]
+[assembly: AssemblyVersion( "0.3.*" )]

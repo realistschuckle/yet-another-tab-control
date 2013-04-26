@@ -4,6 +4,11 @@
         <name>GrayIris.Utilities</name>
     </assembly>
     <members>
+        <member name="T:GrayIris.Utilities.UI.Controls.TabChangingEventHandler">
+            <summary>
+            The delegate to use for the <see cref="E:GrayIris.Utilities.UI.Controls.YaTabControl.TabChanging"/> event.
+            </summary>
+        </member>
         <member name="T:GrayIris.Utilities.UI.Controls.Design.YaTabControlDesigner">
             <summary>
             Provides a custom <see cref="T:System.Windows.Forms.Design.ControlDesigner"/> for the
@@ -157,11 +162,6 @@
         <member name="P:GrayIris.Utilities.UI.Controls.Design.YaTabPageDesigner.Text">
             <summary>
             Shadows the <see cref="P:GrayIris.Utilities.UI.Controls.YaTabPage.Text"/> property.
-            </summary>
-        </member>
-        <member name="T:GrayIris.Utilities.UI.Controls.TabChangingEventHandler">
-            <summary>
-            The delegate to use for the <see cref="E:GrayIris.Utilities.UI.Controls.YaTabControl.TabChanging"/> event.
             </summary>
         </member>
         <member name="T:GrayIris.Utilities.UI.Controls.YaScrollButtonStyle">
@@ -465,7 +465,7 @@
             <param name="index">The 0-based index of the tab you want.</param>
             <returns>A <see cref="T:System.Drawing.Rectangle"/> that represents the bounds of the specified tab.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            The index is less than zero.<br/>-or-<br/>The index is greater than or equal to <see cref="P:System.Windows.Forms.Control.ControlCollection.Count"/>.
+            The index is less than zero.<br/>-or-<br/>The index is greater than or equal to <see cref="!:Control.ControlCollection.Count"/>.
             </exception>
         </member>
         <member name="M:GrayIris.Utilities.UI.Controls.YaTabControl.GetLeftScrollButtonRect">
@@ -984,7 +984,7 @@
             </exception>
             <exception cref="T:System.IndexOutOfRangeException">
             Thrown if this property gets set to a value greater than
-            <see cref="P:System.Windows.Forms.Control.ControlCollection.Count"/>.
+            <see cref="!:Control.ControlCollection.Count"/>.
             </exception>
         </member>
         <member name="P:GrayIris.Utilities.UI.Controls.YaTabControl.ScrollButtonStyle">
