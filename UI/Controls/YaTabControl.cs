@@ -42,6 +42,8 @@ namespace GrayIris.Utilities.UI.Controls
 			yaActiveColor = SystemColors.Control;
 			yaInactiveBrush = ( Brush ) SystemBrushes.Window.Clone();
 			yaInactiveColor = SystemColors.Window;
+            yaHoverBrush = (Brush)SystemBrushes.Control.Clone();
+            yaHoverColor = Color.Silver;
 			yaBorderPen = ( Pen ) Pens.DarkGray.Clone();
 			yaShadowPen = ( Pen ) SystemPens.ControlDark.Clone();
 			yaHighlightPen = ( Pen ) SystemPens.ControlLight.Clone();
@@ -284,6 +286,43 @@ namespace GrayIris.Utilities.UI.Controls
 				InU();
 			}
 		}
+
+        /// <summary>
+        /// The <see cref="Color"/> of the tabs'
+        /// background when hovering.
+        /// </summary>
+        /// <remarks>
+        /// The default value for this property is <see cref="Color.Orange"/>.
+        /// </remarks>
+        public virtual Color HoverColor
+        {
+            get
+            {
+                return yaHoverColor;
+            }
+            set
+            {
+                yaHoverColor = value;
+            }
+        }
+
+        /// <summary>
+        /// Indicates whether to show a close button on each tab.
+        /// </summary>
+        /// <remarks>
+        /// The default value for this property is false.
+        /// </remarks>
+        public virtual bool CloseButton
+        {
+            get
+            {
+                return yaCloseButton;
+            }
+            set
+            {
+                yaCloseButton = value;
+            }
+        }
 
 		/// <summary>
 		/// The <see cref="Color"/> of the border drawn
@@ -638,7 +677,12 @@ namespace GrayIris.Utilities.UI.Controls
 		/// </summary>
 		public event EventHandler InactiveColorChanged;
 
-		/// <summary>
+        /// <summary>
+        /// Occurs after the hover color has changed
+        /// </summary>
+        public event EventHandler HoverColorChanged;
+        
+        /// <summary>
 		/// Occurs after the margin for the control has changed.
 		/// </summary>
 		public event EventHandler MarginChanged;
@@ -1107,7 +1151,7 @@ namespace GrayIris.Utilities.UI.Controls
 						s.Width = Convert.ToSingle( yaTabLengths[ i ] );
 						if( i != yaSelectedIndex )
 						{
-							yaTabDrawer.DrawTab( yaActiveColor, yaInactiveColor, yaHighlightPen.Color, yaShadowPen.Color, yaBorderPen.Color, false, i == OverIndex, yaTabDock, pea.Graphics, s );
+							yaTabDrawer.DrawTab( yaActiveColor, yaInactiveColor, yaHighlightPen.Color, yaShadowPen.Color, yaBorderPen.Color, yaHoverColor, false, i == OverIndex, yaTabDock, pea.Graphics, s );
 						}
 						else
 						{
@@ -1131,7 +1175,7 @@ namespace GrayIris.Utilities.UI.Controls
 					{
 						pea.Graphics.Transform = selTransform;
 						s.Width = Convert.ToSingle( yaTabLengths[ yaSelectedIndex ] );
-						yaTabDrawer.DrawTab( yaActiveColor, yaInactiveColor, yaHighlightPen.Color, yaShadowPen.Color, yaBorderPen.Color, true, SelectedIndex == OverIndex, yaTabDock, pea.Graphics, s );
+						yaTabDrawer.DrawTab( yaActiveColor, yaInactiveColor, yaHighlightPen.Color, yaShadowPen.Color, yaBorderPen.Color, yaHoverColor, true, SelectedIndex == OverIndex, yaTabDock, pea.Graphics, s );
 					}
 				}
 
@@ -1533,12 +1577,27 @@ namespace GrayIris.Utilities.UI.Controls
 		/// </summary>
 		private Color yaInactiveColor;
 
-		/// <summary>
+        /// <summary>
+        /// The color of the tab when hovering.
+        /// </summary>
+        private Color yaHoverColor;
+
+        /// <summary>
+        /// If true, a close button is included on each tab.
+        /// </summary>
+        private bool yaCloseButton;
+
+        /// <summary>
 		/// The brush used to color the inactive-colored area.
 		/// </summary>
 		private Brush yaInactiveBrush;
 
-		/// <summary>
+        /// <summary>
+        /// The brush used to color the hovered tab area.
+        /// </summary>
+        private Brush yaHoverBrush;
+        
+        /// <summary>
 		/// The pen used to draw the highlight lines.
 		/// </summary>
 		private Pen yaHighlightPen;

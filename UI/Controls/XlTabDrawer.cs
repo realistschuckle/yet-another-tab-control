@@ -30,17 +30,18 @@ namespace GrayIris.Utilities.UI.Controls
         /// <summary>
         /// Inherited from <see cref="YaTabDrawer"/>.
         /// </summary>
-        /// <param name="foreColor">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-        /// <param name="backColor">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-        /// <param name="highlightColor">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-        /// <param name="shadowColor">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-        /// <param name="borderColor">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-        /// <param name="active">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-        /// <param name="mouseOver">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-        /// <param name="dock">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-        /// <param name="graphics">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-        /// <param name="tabSize">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-        public override void DrawTab(Color foreColor, Color backColor, Color highlightColor, Color shadowColor, Color borderColor, bool active, bool mouseOver, DockStyle dock, Graphics graphics, SizeF tabSize)
+        /// <param name="foreColor">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+        /// <param name="backColor">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+        /// <param name="highlightColor">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+        /// <param name="shadowColor">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+        /// <param name="borderColor">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+        /// <param name="hoverColor">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+        /// <param name="active">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+        /// <param name="mouseOver">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+        /// <param name="dock">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+        /// <param name="graphics">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+        /// <param name="tabSize">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+        public override void DrawTab(Color foreColor, Color backColor, Color highlightColor, Color shadowColor, Color borderColor, Color hoverColor, bool active, bool mouseOver, DockStyle dock, Graphics graphics, SizeF tabSize)
         {
 			tabPolygon[ 0 ].Y = tabSize.Height;
 			tabPolygon[ 2 ].X = tabSize.Width - 4.0f;
@@ -58,7 +59,7 @@ namespace GrayIris.Utilities.UI.Controls
             if (mouseOver)
             {
                 b.Dispose();
-                b = new SolidBrush(Color.Orange);
+                b = new SolidBrush(hoverColor);
             }
 			graphics.FillPolygon( b, tabPolygon );
 			b.Dispose();
@@ -71,6 +72,7 @@ namespace GrayIris.Utilities.UI.Controls
 			}
 			p.Dispose();
 		}
+
 
 		/// <summary>
 		/// Inherited from <see cref="YaTabDrawer"/>.

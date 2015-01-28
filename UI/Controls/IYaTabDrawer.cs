@@ -18,7 +18,8 @@ namespace GrayIris.Utilities.UI.Controls
 		/// <param name="backColor">The background <see cref="Color"/> of the tab.</param>
 		/// <param name="highlightColor">The highlight <see cref="Color"/> of the tab.</param>
 		/// <param name="shadowColor">The shadow <see cref="Color"/> of the tab.</param>
-		/// <param name="borderColor">The <see cref="Color"/> used as the border color for the <see cref="YaTabControl"/>.</param>
+        /// <param name="borderColor">The <see cref="Color"/> used as the border color for the <see cref="YaTabControl"/>.</param>
+        /// <param name="hoverColor">The <see cref="Color"/> used when hovering over the <see cref="YaTabControl"/>.</param>
 		/// <param name="active">Flag to instruct the drawer to draw the active tab.</param>
         /// <param name="mouseOver">Flag to indicate the cursor is over the tab getting drawn.</param>
 		/// <param name="dock">The <see cref="DockStyle"/> to inform the tab drawer how to draw highlights and shadows, if applicable.</param>
@@ -33,6 +34,7 @@ namespace GrayIris.Utilities.UI.Controls
                                       Color highlightColor,
                                       Color shadowColor,
                                       Color borderColor,
+                                      Color hoverColor,
                                       bool active,
                                       bool mouseOver,
                                       DockStyle dock,

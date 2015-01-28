@@ -30,22 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ToolStripMenuItem tabDrawerToolStripMenuItem;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(YatcForm));
             System.Windows.Forms.ToolStripMenuItem dockStyleToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem tabLocationToolStripMenuItem;
             System.Windows.Forms.ToolStripMenuItem preventToolStripMenuItem;
-            this._ovalTabDrawer = new GrayIris.Utilities.UI.Controls.OvalTabDrawer();
-            this._vsTabDrawer = new GrayIris.Utilities.UI.Controls.VsTabDrawer();
-            this._menu = new System.Windows.Forms.MenuStrip();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(YatcForm));
+            this._drawExcel = new System.Windows.Forms.ToolStripMenuItem();
             this._drawOvals = new System.Windows.Forms.ToolStripMenuItem();
             this._drawVisualStudio = new System.Windows.Forms.ToolStripMenuItem();
-            this._drawExcel = new System.Windows.Forms.ToolStripMenuItem();
-            this._tabs = new GrayIris.Utilities.UI.Controls.YaTabControl();
-            this._xlTabDrawer = new GrayIris.Utilities.UI.Controls.XlTabDrawer();
-            this._tabpage1 = new GrayIris.Utilities.UI.Controls.YaTabPage();
-            this._tabpage2 = new GrayIris.Utilities.UI.Controls.YaTabPage();
-            this._tabpage3 = new GrayIris.Utilities.UI.Controls.YaTabPage();
-            this._images = new System.Windows.Forms.ImageList(this.components);
             this._dockNone = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._dockFill = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,6 +49,15 @@
             this._dockTabsBottom = new System.Windows.Forms.ToolStripMenuItem();
             this._dockTabsLeft = new System.Windows.Forms.ToolStripMenuItem();
             this._preventSelection = new System.Windows.Forms.ToolStripMenuItem();
+            this._ovalTabDrawer = new GrayIris.Utilities.UI.Controls.OvalTabDrawer();
+            this._vsTabDrawer = new GrayIris.Utilities.UI.Controls.VsTabDrawer();
+            this._menu = new System.Windows.Forms.MenuStrip();
+            this._tabs = new GrayIris.Utilities.UI.Controls.YaTabControl();
+            this._tabpage1 = new GrayIris.Utilities.UI.Controls.YaTabPage();
+            this._tabpage2 = new GrayIris.Utilities.UI.Controls.YaTabPage();
+            this._tabpage3 = new GrayIris.Utilities.UI.Controls.YaTabPage();
+            this._images = new System.Windows.Forms.ImageList(this.components);
+            this._xlTabDrawer = new GrayIris.Utilities.UI.Controls.XlTabDrawer();
             tabDrawerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             dockStyleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             tabLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,6 +65,158 @@
             this._menu.SuspendLayout();
             this._tabs.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // tabDrawerToolStripMenuItem
+            // 
+            tabDrawerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._drawExcel,
+            this._drawOvals,
+            this._drawVisualStudio});
+            tabDrawerToolStripMenuItem.Name = "tabDrawerToolStripMenuItem";
+            tabDrawerToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+            tabDrawerToolStripMenuItem.Text = "Tab Drawer";
+            // 
+            // _drawExcel
+            // 
+            this._drawExcel.Checked = true;
+            this._drawExcel.CheckState = System.Windows.Forms.CheckState.Checked;
+            this._drawExcel.Name = "_drawExcel";
+            this._drawExcel.Size = new System.Drawing.Size(142, 22);
+            this._drawExcel.Text = "Excel";
+            this._drawExcel.Click += new System.EventHandler(this.ChangeToExcel);
+            // 
+            // _drawOvals
+            // 
+            this._drawOvals.Name = "_drawOvals";
+            this._drawOvals.Size = new System.Drawing.Size(142, 22);
+            this._drawOvals.Text = "Ovals";
+            this._drawOvals.Click += new System.EventHandler(this.ChangeToOvals);
+            // 
+            // _drawVisualStudio
+            // 
+            this._drawVisualStudio.Name = "_drawVisualStudio";
+            this._drawVisualStudio.Size = new System.Drawing.Size(142, 22);
+            this._drawVisualStudio.Text = "Visual Studio";
+            this._drawVisualStudio.Click += new System.EventHandler(this.ChangeToVisualStudio);
+            // 
+            // dockStyleToolStripMenuItem
+            // 
+            dockStyleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._dockNone,
+            this.toolStripSeparator1,
+            this._dockFill,
+            this._dockLeft,
+            this._dockTop,
+            this._dockRight,
+            this._dockBottom});
+            dockStyleToolStripMenuItem.Name = "dockStyleToolStripMenuItem";
+            dockStyleToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            dockStyleToolStripMenuItem.Text = "Dock Style";
+            // 
+            // _dockNone
+            // 
+            this._dockNone.Checked = true;
+            this._dockNone.CheckState = System.Windows.Forms.CheckState.Checked;
+            this._dockNone.Name = "_dockNone";
+            this._dockNone.Size = new System.Drawing.Size(114, 22);
+            this._dockNone.Text = "None";
+            this._dockNone.Click += new System.EventHandler(this.ChangeDockState);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(111, 6);
+            // 
+            // _dockFill
+            // 
+            this._dockFill.Name = "_dockFill";
+            this._dockFill.Size = new System.Drawing.Size(114, 22);
+            this._dockFill.Text = "Fill";
+            this._dockFill.Click += new System.EventHandler(this.ChangeDockState);
+            // 
+            // _dockLeft
+            // 
+            this._dockLeft.Name = "_dockLeft";
+            this._dockLeft.Size = new System.Drawing.Size(114, 22);
+            this._dockLeft.Text = "Left";
+            this._dockLeft.Click += new System.EventHandler(this.ChangeDockState);
+            // 
+            // _dockTop
+            // 
+            this._dockTop.Name = "_dockTop";
+            this._dockTop.Size = new System.Drawing.Size(114, 22);
+            this._dockTop.Text = "Top";
+            this._dockTop.Click += new System.EventHandler(this.ChangeDockState);
+            // 
+            // _dockRight
+            // 
+            this._dockRight.Name = "_dockRight";
+            this._dockRight.Size = new System.Drawing.Size(114, 22);
+            this._dockRight.Text = "Right";
+            this._dockRight.Click += new System.EventHandler(this.ChangeDockState);
+            // 
+            // _dockBottom
+            // 
+            this._dockBottom.Name = "_dockBottom";
+            this._dockBottom.Size = new System.Drawing.Size(114, 22);
+            this._dockBottom.Text = "Bottom";
+            this._dockBottom.Click += new System.EventHandler(this.ChangeDockState);
+            // 
+            // tabLocationToolStripMenuItem
+            // 
+            tabLocationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._dockTabsTop,
+            this._dockTabsRight,
+            this._dockTabsBottom,
+            this._dockTabsLeft});
+            tabLocationToolStripMenuItem.Name = "tabLocationToolStripMenuItem";
+            tabLocationToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            tabLocationToolStripMenuItem.Text = "Tab Location";
+            // 
+            // _dockTabsTop
+            // 
+            this._dockTabsTop.Checked = true;
+            this._dockTabsTop.CheckState = System.Windows.Forms.CheckState.Checked;
+            this._dockTabsTop.Name = "_dockTabsTop";
+            this._dockTabsTop.Size = new System.Drawing.Size(114, 22);
+            this._dockTabsTop.Text = "Top";
+            this._dockTabsTop.Click += new System.EventHandler(this.ChangeTabLocation);
+            // 
+            // _dockTabsRight
+            // 
+            this._dockTabsRight.Name = "_dockTabsRight";
+            this._dockTabsRight.Size = new System.Drawing.Size(114, 22);
+            this._dockTabsRight.Text = "Right";
+            this._dockTabsRight.Click += new System.EventHandler(this.ChangeTabLocation);
+            // 
+            // _dockTabsBottom
+            // 
+            this._dockTabsBottom.Name = "_dockTabsBottom";
+            this._dockTabsBottom.Size = new System.Drawing.Size(114, 22);
+            this._dockTabsBottom.Text = "Bottom";
+            this._dockTabsBottom.Click += new System.EventHandler(this.ChangeTabLocation);
+            // 
+            // _dockTabsLeft
+            // 
+            this._dockTabsLeft.Name = "_dockTabsLeft";
+            this._dockTabsLeft.Size = new System.Drawing.Size(114, 22);
+            this._dockTabsLeft.Text = "Left";
+            this._dockTabsLeft.Click += new System.EventHandler(this.ChangeTabLocation);
+            // 
+            // preventToolStripMenuItem
+            // 
+            preventToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._preventSelection});
+            preventToolStripMenuItem.Name = "preventToolStripMenuItem";
+            preventToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            preventToolStripMenuItem.Text = "Prevent";
+            // 
+            // _preventSelection
+            // 
+            this._preventSelection.Name = "_preventSelection";
+            this._preventSelection.Size = new System.Drawing.Size(197, 22);
+            this._preventSelection.Text = "Selecting \"Second Tab\"";
+            this._preventSelection.Click += new System.EventHandler(this.ChangeSelectingCapability);
             // 
             // _menu
             // 
@@ -79,39 +231,6 @@
             this._menu.TabIndex = 1;
             this._menu.Text = "menuStrip1";
             // 
-            // tabDrawerToolStripMenuItem
-            // 
-            tabDrawerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._drawExcel,
-            this._drawOvals,
-            this._drawVisualStudio});
-            tabDrawerToolStripMenuItem.Name = "tabDrawerToolStripMenuItem";
-            tabDrawerToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
-            tabDrawerToolStripMenuItem.Text = "Tab Drawer";
-            // 
-            // _drawOvals
-            // 
-            this._drawOvals.Name = "_drawOvals";
-            this._drawOvals.Size = new System.Drawing.Size(152, 22);
-            this._drawOvals.Text = "Ovals";
-            this._drawOvals.Click += new System.EventHandler(this.ChangeToOvals);
-            // 
-            // _drawVisualStudio
-            // 
-            this._drawVisualStudio.Name = "_drawVisualStudio";
-            this._drawVisualStudio.Size = new System.Drawing.Size(152, 22);
-            this._drawVisualStudio.Text = "Visual Studio";
-            this._drawVisualStudio.Click += new System.EventHandler(this.ChangeToVisualStudio);
-            // 
-            // _drawExcel
-            // 
-            this._drawExcel.Checked = true;
-            this._drawExcel.CheckState = System.Windows.Forms.CheckState.Checked;
-            this._drawExcel.Name = "_drawExcel";
-            this._drawExcel.Size = new System.Drawing.Size(152, 22);
-            this._drawExcel.Text = "Excel";
-            this._drawExcel.Click += new System.EventHandler(this.ChangeToExcel);
-            // 
             // _tabs
             // 
             this._tabs.ActiveColor = System.Drawing.SystemColors.Control;
@@ -120,12 +239,14 @@
             this._tabs.Controls.Add(this._tabpage1);
             this._tabs.Controls.Add(this._tabpage2);
             this._tabs.Controls.Add(this._tabpage3);
+            this._tabs.HoverColor = System.Drawing.Color.Tan;
             this._tabs.ImageIndex = 0;
             this._tabs.ImageList = this._images;
             this._tabs.InactiveColor = System.Drawing.SystemColors.Window;
             this._tabs.Location = new System.Drawing.Point(224, 107);
             this._tabs.Name = "_tabs";
-            this._tabs.ScrollButtonStyle = GrayIris.Utilities.UI.Controls.YaScrollButtonStyle.Always;
+            this._tabs.OverIndex = -1;
+            this._tabs.ScrollButtonStyle = GrayIris.Utilities.UI.Controls.YaScrollButtonStyle.Auto;
             this._tabs.SelectedIndex = 0;
             this._tabs.SelectedTab = this._tabpage1;
             this._tabs.Size = new System.Drawing.Size(390, 300);
@@ -138,9 +259,9 @@
             // 
             this._tabpage1.Dock = System.Windows.Forms.DockStyle.Fill;
             this._tabpage1.ImageIndex = -1;
-            this._tabpage1.Location = new System.Drawing.Point(4, 30);
+            this._tabpage1.Location = new System.Drawing.Point(4, 31);
             this._tabpage1.Name = "_tabpage1";
-            this._tabpage1.Size = new System.Drawing.Size(382, 266);
+            this._tabpage1.Size = new System.Drawing.Size(382, 265);
             this._tabpage1.TabIndex = 0;
             this._tabpage1.Text = "First Tab";
             // 
@@ -171,125 +292,6 @@
             this._images.Images.SetKeyName(0, "fork.png");
             this._images.Images.SetKeyName(1, "online_support.png");
             this._images.Images.SetKeyName(2, "weather.png");
-            // 
-            // dockStyleToolStripMenuItem
-            // 
-            dockStyleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._dockNone,
-            this.toolStripSeparator1,
-            this._dockFill,
-            this._dockLeft,
-            this._dockTop,
-            this._dockRight,
-            this._dockBottom});
-            dockStyleToolStripMenuItem.Name = "dockStyleToolStripMenuItem";
-            dockStyleToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
-            dockStyleToolStripMenuItem.Text = "Dock Style";
-            // 
-            // _dockNone
-            // 
-            this._dockNone.Checked = true;
-            this._dockNone.CheckState = System.Windows.Forms.CheckState.Checked;
-            this._dockNone.Name = "_dockNone";
-            this._dockNone.Size = new System.Drawing.Size(152, 22);
-            this._dockNone.Text = "None";
-            this._dockNone.Click += new System.EventHandler(this.ChangeDockState);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
-            // 
-            // _dockFill
-            // 
-            this._dockFill.Name = "_dockFill";
-            this._dockFill.Size = new System.Drawing.Size(152, 22);
-            this._dockFill.Text = "Fill";
-            this._dockFill.Click += new System.EventHandler(this.ChangeDockState);
-            // 
-            // _dockLeft
-            // 
-            this._dockLeft.Name = "_dockLeft";
-            this._dockLeft.Size = new System.Drawing.Size(152, 22);
-            this._dockLeft.Text = "Left";
-            this._dockLeft.Click += new System.EventHandler(this.ChangeDockState);
-            // 
-            // _dockTop
-            // 
-            this._dockTop.Name = "_dockTop";
-            this._dockTop.Size = new System.Drawing.Size(152, 22);
-            this._dockTop.Text = "Top";
-            this._dockTop.Click += new System.EventHandler(this.ChangeDockState);
-            // 
-            // _dockRight
-            // 
-            this._dockRight.Name = "_dockRight";
-            this._dockRight.Size = new System.Drawing.Size(152, 22);
-            this._dockRight.Text = "Right";
-            this._dockRight.Click += new System.EventHandler(this.ChangeDockState);
-            // 
-            // _dockBottom
-            // 
-            this._dockBottom.Name = "_dockBottom";
-            this._dockBottom.Size = new System.Drawing.Size(152, 22);
-            this._dockBottom.Text = "Bottom";
-            this._dockBottom.Click += new System.EventHandler(this.ChangeDockState);
-            // 
-            // tabLocationToolStripMenuItem
-            // 
-            tabLocationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._dockTabsTop,
-            this._dockTabsRight,
-            this._dockTabsBottom,
-            this._dockTabsLeft});
-            tabLocationToolStripMenuItem.Name = "tabLocationToolStripMenuItem";
-            tabLocationToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
-            tabLocationToolStripMenuItem.Text = "Tab Location";
-            // 
-            // _dockTabsTop
-            // 
-            this._dockTabsTop.Checked = true;
-            this._dockTabsTop.CheckState = System.Windows.Forms.CheckState.Checked;
-            this._dockTabsTop.Name = "_dockTabsTop";
-            this._dockTabsTop.Size = new System.Drawing.Size(152, 22);
-            this._dockTabsTop.Text = "Top";
-            this._dockTabsTop.Click += new System.EventHandler(this.ChangeTabLocation);
-            // 
-            // _dockTabsRight
-            // 
-            this._dockTabsRight.Name = "_dockTabsRight";
-            this._dockTabsRight.Size = new System.Drawing.Size(152, 22);
-            this._dockTabsRight.Text = "Right";
-            this._dockTabsRight.Click += new System.EventHandler(this.ChangeTabLocation);
-            // 
-            // _dockTabsBottom
-            // 
-            this._dockTabsBottom.Name = "_dockTabsBottom";
-            this._dockTabsBottom.Size = new System.Drawing.Size(152, 22);
-            this._dockTabsBottom.Text = "Bottom";
-            this._dockTabsBottom.Click += new System.EventHandler(this.ChangeTabLocation);
-            // 
-            // _dockTabsLeft
-            // 
-            this._dockTabsLeft.Name = "_dockTabsLeft";
-            this._dockTabsLeft.Size = new System.Drawing.Size(152, 22);
-            this._dockTabsLeft.Text = "Left";
-            this._dockTabsLeft.Click += new System.EventHandler(this.ChangeTabLocation);
-            // 
-            // preventToolStripMenuItem
-            // 
-            preventToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._preventSelection});
-            preventToolStripMenuItem.Name = "preventToolStripMenuItem";
-            preventToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            preventToolStripMenuItem.Text = "Prevent";
-            // 
-            // _preventSelection
-            // 
-            this._preventSelection.Name = "_preventSelection";
-            this._preventSelection.Size = new System.Drawing.Size(197, 22);
-            this._preventSelection.Text = "Selecting \"Second Tab\"";
-            this._preventSelection.Click += new System.EventHandler(this.ChangeSelectingCapability);
             // 
             // YatcForm
             // 
