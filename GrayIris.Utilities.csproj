@@ -90,6 +90,11 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\delegates.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -102,7 +107,8 @@
     <Compile Include="UI\Controls\enums.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UI\Controls\IYaTabDrawer.cs">
+    <Compile Include="UI\Controls\NewTabEventArgs.cs" />
+    <Compile Include="UI\Controls\YaTabDrawerBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\Controls\OvalTabDrawer.cs">
@@ -123,12 +129,19 @@
     <Compile Include="UI\Controls\YaTabPage.cs">
       <SubType>Component</SubType>
     </Compile>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\YaTabControl.resx">
       <DependentUpon>YaTabControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\YaTabPage.resx">
       <DependentUpon>YaTabPage.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -236,24 +236,28 @@
             this._tabs.ActiveColor = System.Drawing.SystemColors.Control;
             this._tabs.BackColor = System.Drawing.SystemColors.Control;
             this._tabs.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this._tabs.CloseButton = true;
             this._tabs.Controls.Add(this._tabpage1);
             this._tabs.Controls.Add(this._tabpage2);
             this._tabs.Controls.Add(this._tabpage3);
+            this._tabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this._tabs.HoverColor = System.Drawing.Color.Tan;
             this._tabs.ImageIndex = 0;
             this._tabs.ImageList = this._images;
             this._tabs.InactiveColor = System.Drawing.SystemColors.Window;
-            this._tabs.Location = new System.Drawing.Point(224, 107);
+            this._tabs.Location = new System.Drawing.Point(0, 24);
             this._tabs.Name = "_tabs";
+            this._tabs.NewTabButton = true;
             this._tabs.OverIndex = -1;
-            this._tabs.ScrollButtonStyle = GrayIris.Utilities.UI.Controls.YaScrollButtonStyle.Auto;
+            this._tabs.ScrollButtonStyle = GrayIris.Utilities.UI.Controls.YaScrollButtonStyle.Never;
             this._tabs.SelectedIndex = 0;
             this._tabs.SelectedTab = this._tabpage1;
-            this._tabs.Size = new System.Drawing.Size(390, 300);
+            this._tabs.Size = new System.Drawing.Size(838, 491);
             this._tabs.TabDock = System.Windows.Forms.DockStyle.Top;
             this._tabs.TabDrawer = this._xlTabDrawer;
             this._tabs.TabFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._tabs.TabIndex = 2;
+            this._tabs.NewTabButtonClicked += new GrayIris.Utilities.UI.Controls.NewTabEventHandler(this._tabs_NewTabButtonClicked);
             // 
             // _tabpage1
             // 
@@ -261,7 +265,7 @@
             this._tabpage1.ImageIndex = -1;
             this._tabpage1.Location = new System.Drawing.Point(4, 31);
             this._tabpage1.Name = "_tabpage1";
-            this._tabpage1.Size = new System.Drawing.Size(382, 265);
+            this._tabpage1.Size = new System.Drawing.Size(830, 456);
             this._tabpage1.TabIndex = 0;
             this._tabpage1.Text = "First Tab";
             // 

@@ -9,7 +9,7 @@ namespace GrayIris.Utilities.UI.Controls
 	/// Describes the contract for classes that
 	/// can draw the tabs for a <see cref="YaTabControl"/>.
 	/// </summary>
-	public abstract class YaTabDrawer : Component
+	public abstract class YaTabDrawerBase : Component
 	{
 		/// <summary>
 		/// Draws a tab for a <see cref="YaTabControl"/>.
@@ -39,13 +39,14 @@ namespace GrayIris.Utilities.UI.Controls
                                       bool mouseOver,
                                       DockStyle dock,
                                       Graphics graphics,
-                                      SizeF tabSize);
+                                      SizeF tabSize,
+                                      bool isNewTab);
 
 		/// <summary>
 		/// Instructs the <see cref="YaTabControl"/> to draw the higlight/shadow lines.
 		/// </summary>
 		/// <returns>.
-		/// Returns <b>true</b> if this <see cref="YaTabDrawer"/> uses
+		/// Returns <b>true</b> if this <see cref="YaTabDrawerBase"/> uses
 		/// highlights. Otherwise, returns <b>false</b>.
 		/// </returns>
 		public abstract bool UsesHighlghts{ get; }
@@ -64,5 +65,9 @@ namespace GrayIris.Utilities.UI.Controls
 		/// style. Otherwise, returns <b>false</b>.
 		/// </returns>
 		public abstract bool SupportsTabDockStyle( DockStyle dock );
+
+        //public abstract void DrawNewTabButton(Graphics graphics, RectangleF tabPagesRectangle);
+
+        //public abstract float NewTabButtonWidth { get; }
 	}
 }

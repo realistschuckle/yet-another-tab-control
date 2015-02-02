@@ -8,7 +8,7 @@ namespace GrayIris.Utilities.UI.Controls
 	/// <summary>
 	/// The <see cref="OvalTabDrawer"/> draws ovals for tabs.
 	/// </summary>
-	public class OvalTabDrawer : YaTabDrawer
+	public class OvalTabDrawer : YaTabDrawerBase
 	{
 		/// <summary>
 		/// Creates an instance of the <see cref="OvalTabDrawer"/> class.
@@ -18,20 +18,20 @@ namespace GrayIris.Utilities.UI.Controls
 		#region YaTabDrawer Members
 
 		/// <summary>
-		/// Inherited from <see cref="YaTabDrawer"/>.
+		/// Inherited from <see cref="YaTabDrawerBase"/>.
 		/// </summary>
-		/// <param name="foreColor">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-		/// <param name="backColor">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-		/// <param name="highlightColor">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-		/// <param name="shadowColor">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-        /// <param name="borderColor">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-        /// <param name="hoverColor">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-		/// <param name="active">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-        /// <param name="mouseOver">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-		/// <param name="dock">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-		/// <param name="graphics">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-		/// <param name="tabSize">See <see cref="YaTabDrawer.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
-		public override void DrawTab( Color foreColor, Color backColor, Color highlightColor, Color shadowColor, Color borderColor, Color hoverColor, bool active, bool mouseOver, DockStyle dock, Graphics graphics, SizeF tabSize )
+		/// <param name="foreColor">See <see cref="YaTabDrawerBase.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+		/// <param name="backColor">See <see cref="YaTabDrawerBase.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+		/// <param name="highlightColor">See <see cref="YaTabDrawerBase.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+		/// <param name="shadowColor">See <see cref="YaTabDrawerBase.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+        /// <param name="borderColor">See <see cref="YaTabDrawerBase.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+        /// <param name="hoverColor">See <see cref="YaTabDrawerBase.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+		/// <param name="active">See <see cref="YaTabDrawerBase.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+        /// <param name="mouseOver">See <see cref="YaTabDrawerBase.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+		/// <param name="dock">See <see cref="YaTabDrawerBase.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+		/// <param name="graphics">See <see cref="YaTabDrawerBase.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+		/// <param name="tabSize">See <see cref="YaTabDrawerBase.DrawTab(Color,Color,Color,Color,Color,bool,DockStyle,Graphics,SizeF)"/>.</param>
+		public override void DrawTab( Color foreColor, Color backColor, Color highlightColor, Color shadowColor, Color borderColor, Color hoverColor, bool active, bool mouseOver, DockStyle dock, Graphics graphics, SizeF tabSize, bool isNewTab )
 		{
 			if( active )
 			{
@@ -46,7 +46,7 @@ namespace GrayIris.Utilities.UI.Controls
 		}
 
 		/// <summary>
-		/// Inherited from <see cref="YaTabDrawer"/>.
+		/// Inherited from <see cref="YaTabDrawerBase"/>.
 		/// </summary>
 		/// <returns>
 		/// The <see cref="XlTabDrawer"/> uses highlights. Hence, this
@@ -61,7 +61,7 @@ namespace GrayIris.Utilities.UI.Controls
 		}
 
 		/// <summary>
-		/// Inherited from <see cref="YaTabDrawer"/>.
+		/// Inherited from <see cref="YaTabDrawerBase"/>.
 		/// </summary>
 		/// <returns>
 		/// The <see cref="VsTabDrawer"/> supports all directional
@@ -82,6 +82,22 @@ namespace GrayIris.Utilities.UI.Controls
 		{
 			return ( dock != DockStyle.Fill && dock != DockStyle.None );
 		}
+
+        ///// <summary>
+        ///// Draws the new tab button.
+        ///// </summary>
+        //public override void DrawNewTabButton(Graphics graphics, RectangleF tabPagesRectangle)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        ///// <summary>
+        ///// Returns the width of the new tab button.
+        ///// </summary>
+        //public override float NewTabButtonWidth
+        //{
+        //    get { return 0.0f; }
+        //}
 
 		#endregion
 	}
