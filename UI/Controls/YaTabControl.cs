@@ -691,6 +691,11 @@ namespace GrayIris.Utilities.UI.Controls
         public event EventHandler TabChanged;
 
         /// <summary>
+        /// Occurs after a tab has closed and been removed from the Controls collection.
+        /// </summary>
+        public event EventHandler TabClosing;
+
+        /// <summary>
         /// Occurs after the border color has changed
         /// </summary>
         public event EventHandler BorderColorChanged;
@@ -890,7 +895,7 @@ namespace GrayIris.Utilities.UI.Controls
                 tab.Tag = "WAS_NEW_TAB";
                 tab.Text = "";
                 var newTab = AddNewTab();
-                tcea.Cancel = true;
+                //tcea.Cancel = true;
                 OnNewTabButtonClicked(new NewTabEventArgs(newTab));
             }
 
@@ -915,6 +920,20 @@ namespace GrayIris.Utilities.UI.Controls
             }
         }
 
+        /// <summary>
+        /// Fires the <see cref="TabClosing" /> event.
+        /// </summary>
+        /// <param name="e">
+        /// Some <see cref="TabClosingEventArgs"/> for the event.
+        /// </param>
+        protected virtual void OnTabClosing(TabClosingEventArgs e)
+        {
+            if (this.Controls.Count <= 2) e.Cancel = true;
+            if(TabClosing != null)
+            {
+                TabClosing(this, e);
+            }
+        }
         #endregion
 
         #region Protected Overridden Methods
@@ -1112,7 +1131,13 @@ namespace GrayIris.Utilities.UI.Controls
 
                 if (clickRectangle.Contains(p))
                 {
-                    Controls.RemoveAt(i);
+                    var etc = new TabClosingEventArgs();
+                    OnTabClosing(etc);
+                    if (!etc.Cancel)
+                    {
+                        Controls.RemoveAt(i);
+                        InU();
+                    }
                 }
             }
         }
@@ -1154,7 +1179,11 @@ namespace GrayIris.Utilities.UI.Controls
         protected override void OnControlRemoved(ControlEventArgs cea)
         {
             cea.Control.TextChanged -= ChildTextChangeEventHandler;
-            cea.Control.Dispose();
+            try
+            {
+                cea.Control.Dispose();
+            }
+            catch { }
             base.OnControlRemoved(cea);
             if (Controls.Count > 0)
             {
@@ -1649,7 +1678,7 @@ namespace GrayIris.Utilities.UI.Controls
         /// <summary>
         /// Adds a "NEW_TAB" at the end of the list of tabs.
         /// </summary>
-        private YaTabPage AddNewTab()
+        public YaTabPage AddNewTab()
         {
             var newTab = new YaTabPage();
             newTab.Tag = "NEW_TAB";
