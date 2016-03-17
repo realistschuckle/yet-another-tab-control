@@ -1009,7 +1009,39 @@ namespace GrayIris.Utilities.UI.Controls
         protected override void OnMouseDown(MouseEventArgs mea)
         {
             base.OnMouseDown(mea);
-            Point p = new Point(mea.X - 2 * yaMargin, mea.Y);
+
+            Point p;
+
+            //see if user clicked on close button
+            p = mea.Location;
+            for (int i = 0; i <= yaLastVisibleTabIndex; i++)
+            {
+                var tag = this.Controls[i].Tag;
+                if (tag != null && tag.ToString() == "NEW_TAB")
+                {
+                    continue;
+                }
+
+                var tabRectangle = GetTabRect(i);
+                var clickRectangle = GetRectangleClose(tabRectangle, 2);    //slightly larger target area for the mouse (x image padding)
+
+                if (clickRectangle.Contains(p))
+                {
+                    var etc = new TabClosingEventArgs();
+                    OnTabClosing(etc);
+                    if (!etc.Cancel)
+                    {
+                        Controls.RemoveAt(i);
+                        InU();
+                        this.SelectedIndex = i - 1;
+                        OnTabChanged(new EventArgs());
+                        return;
+                    }
+                }
+            }
+
+            //done checking for close event
+            p = new Point(mea.X - 2 * yaMargin, mea.Y);
             switch (yaTabDock)
             {
                 case DockStyle.Bottom:
@@ -1108,38 +1140,6 @@ namespace GrayIris.Utilities.UI.Controls
         protected override void OnMouseClick(MouseEventArgs e)
         {
             base.OnMouseClick(e);
-
-            if (!CloseButton) return;
-
-            //see if user clicked on close button
-            Point p = e.Location;
-            for (int i = 0; i <= yaLastVisibleTabIndex; i++)
-            {
-                var tag = this.Controls[i].Tag;
-                var isOrWasNewTab = (tag != null && (tag.ToString() == "NEW_TAB" || tag.ToString() == "WAS_NEW_TAB"));
-                if (isOrWasNewTab)
-                {
-                    if (tag.ToString() == "WAS_NEW_TAB")
-                    {
-                        this.Controls[i].Tag = null; //reset "WAS_NEW_TAB" since this tag is held just for this event
-                    }
-                    continue;
-                }
-
-                var tabRectangle = GetTabRect(i);
-                var clickRectangle = GetRectangleClose(tabRectangle, 2);    //slightly larger target area for the mouse (x image padding)
-
-                if (clickRectangle.Contains(p))
-                {
-                    var etc = new TabClosingEventArgs();
-                    OnTabClosing(etc);
-                    if (!etc.Cancel)
-                    {
-                        Controls.RemoveAt(i);
-                        InU();
-                    }
-                }
-            }
         }
 
         private RectangleF GetRectangleClose(Rectangle tabRectangle, int inflateSize = 0)
@@ -1303,7 +1303,7 @@ namespace GrayIris.Utilities.UI.Controls
 
                     // Draw the tabs from left to right skipping over the
                     // selected tab.
-                    for (int i = 0; i <= yaLastVisibleTabIndex; i++)
+                    for (int i = 0; i <= yaLastVisibleTabIndex && i < yaTabLengths.Count; i++)
                     {
                         s.Width = Convert.ToSingle(yaTabLengths[i]);
                         if (i != yaSelectedIndex)
@@ -1357,7 +1357,7 @@ namespace GrayIris.Utilities.UI.Controls
                     pea.Graphics.TranslateTransform(2.0f * yaMargin - yaTabLeftDif, yaClientRectangle.Height);
                 }
 
-                for (int i = 0; i <= yaLastVisibleTabIndex; i++)
+                for (int i = 0; i <= yaLastVisibleTabIndex && i < yaTabLengths.Count; i++)
                 {
                     s.Width = Convert.ToSingle(yaTabLengths[i]);
                     ytp = Controls[i] as YaTabPage;
