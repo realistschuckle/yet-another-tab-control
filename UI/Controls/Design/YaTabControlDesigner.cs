@@ -152,7 +152,7 @@ namespace GrayIris.Utilities.UI.Controls.Design
 		private const int WM_LBUTTONDBLCLK = 0x0203;
 		
 		/// <summary>
-		/// Watches for the removal of <see cref="YaTabDrawer"/>s and, should
+		/// Watches for the removal of <see cref="YaTabDrawerBase"/>s and, should
 		/// one get removed that is assigned to the <see cref="YaTabControl"/>,
 		/// then set the <see cref="YaTabControl.TabDrawer"/> property to <b>null</b>.
 		/// </summary>

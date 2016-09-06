@@ -82,5 +82,11 @@ namespace Example
         {
             args.Cancel = args.NewIndex == 1 && _preventSelection.Checked;
         }
+
+        private void _tabs_NewTabButtonClicked(object sender, NewTabEventArgs e)
+        {
+            //_tabs.SelectedTab = e.NewTab;
+        }
+
     }
 }
